@@ -2,10 +2,6 @@
 import AppSearch from './AppSearch.vue';
 
 export default {
-    data() {
-        return {
-        }
-    },
     emits: ['Searched-Title'],
     components: { AppSearch },
     methods: {
