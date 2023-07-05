@@ -1,5 +1,5 @@
 <script>
-import ContentSearch from './components/ContentSearch'
+import ContentSearch from '../components/ContentSearch.vue'
 
 export default {
     components: { ContentSearch, }

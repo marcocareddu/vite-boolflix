@@ -1,5 +1,5 @@
 <script>
-import ContentCard from './components/ContentCard'
+import ContentCard from '../components/ContentCard.vue'
 
 export default {
     components: { ContentCard, }
