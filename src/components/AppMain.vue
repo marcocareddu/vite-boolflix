@@ -1,6 +1,7 @@
 <script>
-import MoviesCard from './CardsMovies.vue';
-import SeriesCard from './CardsSeries.vue';
+import MoviesCard from './AppCard.vue';
+import SeriesCard from './AppCard.vue';
+
 export default {
     props: { movies: Object, series: Object },
     components: { MoviesCard, SeriesCard },
