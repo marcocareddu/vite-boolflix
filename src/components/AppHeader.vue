@@ -6,6 +6,9 @@ export default {
 }
 </script>
 
-<template></template>
+<template>
+    <!-- Content Search -->
+    <ContentSearch />
+</template>
 
 <style></style>
