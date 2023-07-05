@@ -13,6 +13,7 @@ export default {
     data() {
         return {
             movies: [],
+            series: [],
         }
     },
     components: { AppMain, AppHeader, },
@@ -21,9 +22,9 @@ export default {
         // Search movie title with API
         searchTitle(title) {
             axios.get(`${endpoint}/search/movie?api_key=${apiKey}&query=${title}${langIta}`)
-                .then(res => {
-                    this.movies = res.data.results
-                })
+                .then(res => { this.movies = res.data.results });
+            axios.get(`${endpoint}/search/tv?api_key=${apiKey}&query=${title}${langIta}`)
+                .then(res => { this.series = res.data.results });
         }
     }
 }
