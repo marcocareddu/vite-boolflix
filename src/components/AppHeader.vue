@@ -5,9 +5,8 @@ export default {
     emits: ['Searched-Title'],
     components: { AppSearch },
     methods: {
-        onInput(searchedWord) {
-            this.$emit('Searched-Title', searchedWord);
-        }
+        // Emit searched term on App component
+        onInput(searchedWord) { this.$emit('Searched-Title', searchedWord); },
     }
 }
 </script>
