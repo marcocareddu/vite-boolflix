@@ -4,7 +4,8 @@ import AppCard from './AppCard.vue'
 export default {
     data() {
         return {
-            imgPath: './'
+            imgPath: './',
+            errFlag: false,
         }
     },
     props: {
@@ -13,7 +14,12 @@ export default {
     components: { AppCard },
     methods: {
         langToImg(lang) {
+            // if (this.errFlag) {
+            //     this.errFlag = false
+            //     return `${this.imgPath}pirates.png`
+            // } else {}
             return `${this.imgPath}${lang}.png`
+
         },
     }
 }
@@ -26,7 +32,7 @@ export default {
             <h4>{{ movie.title }}</h4>
             <h5>{{ movie.original_title }}</h5>
             <h5>{{ movie.original_language }}</h5>
-            <img :src="this.langToImg(movie.original_language)" alt="">
+            <img :src="this.langToImg(movie.original_language)" :alt="movie.title">
             <h5>{{ Math.ceil(movie.vote_average) }}</h5>
         </li>
     </ul>
