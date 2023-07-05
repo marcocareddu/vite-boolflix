@@ -1,14 +1,24 @@
 <script>
-import ContentSearch from '../components/ContentSearch.vue'
+import AppSearch from './AppSearch.vue';
 
 export default {
-    components: { ContentSearch, }
+    data() {
+        return {
+        }
+    },
+    emits: ['Searched-Title'],
+    components: { AppSearch },
+    methods: {
+        onInput(searchedWord) {
+            this.$emit('Searched-Title', searchedWord);
+        }
+    }
 }
 </script>
 
 <template>
     <!-- Content Search -->
-    <ContentSearch />
+    <AppSearch :place-holder="'Cerca film o serie...'" @form-submit="onInput" />
 </template>
 
 <style></style>
