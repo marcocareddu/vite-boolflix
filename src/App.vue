@@ -1,7 +1,7 @@
 <script>
 import axios from 'axios';
 
-// Endpoint TMDB API
+// API Links
 const endpoint = 'https://api.themoviedb.org/3';
 const apiKey = '5446901a9478caa2f5783c5e24203b7c';
 const langIta = '&language=it-IT';
