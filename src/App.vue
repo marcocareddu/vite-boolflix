@@ -7,6 +7,10 @@ export default {
 }
 </script>
 
-<template></template>
+<template>
+    <!--App Header -->
+    <AppHeader />
 
-<style></style>
+    <!--App Main -->
+    <AppMain />
+</template>
