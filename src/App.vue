@@ -22,9 +22,41 @@ export default {
         // Search movie title with API
         searchTitle(title) {
             axios.get(`${endpoint}/search/movie?api_key=${apiKey}&query=${title}${langIta}`)
-                .then(res => { this.movies = res.data.results });
+                .then(res => {
+
+                    const fullArray = res.data.results;
+
+                    this.movies = fullArray.map(movie => {
+                        const {
+                            id,
+                            title,
+                            original_title,
+                            original_language,
+                            poster_path,
+                            vote_average
+                        } = movie;
+                        return { id, title, original_title, original_language, poster_path, vote_average }
+                    })
+                });
+
+            // Search series title with API
             axios.get(`${endpoint}/search/tv?api_key=${apiKey}&query=${title}${langIta}`)
-                .then(res => { this.series = res.data.results });
+                .then(res => {
+
+                    const fullArray = res.data.results;
+
+                    this.series = fullArray.map(series => {
+                        const {
+                            id,
+                            name: title,
+                            original_name: original_title,
+                            original_language,
+                            poster_path,
+                            vote_average
+                        } = series;
+                        return { id, title, original_title, original_language, poster_path, vote_average }
+                    })
+                });
         }
     }
 }
