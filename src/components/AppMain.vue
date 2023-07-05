@@ -5,7 +5,6 @@ export default {
     props: { movies: Object, series: Object },
     components: { MoviesCard, SeriesCard },
 }
-
 </script>
 
 <template>

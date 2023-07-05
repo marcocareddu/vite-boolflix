@@ -1,15 +1,8 @@
 <script>
 export default {
-    data() {
+    data() { return { stringToSearch: '' } },
 
-        return {
-            stringToSearch: '',
-        }
-    },
-
-    props: {
-        placeHolder: String,
-    },
+    props: { placeHolder: String },
 
     emits: ['form-submit']
 }
@@ -22,5 +15,3 @@ export default {
         <button>Cerca</button>
     </form>
 </template>
-
-<style></style>

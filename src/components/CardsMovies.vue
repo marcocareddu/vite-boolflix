@@ -3,15 +3,10 @@ const apiImageEndpoint = 'https://image.tmdb.org/t/p/';
 
 export default {
     data() {
-        return {
-            imgPath: './',
-            errFlag: false,
-            apiImgSize: 'w342',
-        }
+        return { imgPath: './', errFlag: false, apiImgSize: 'w342' }
     },
-    props: {
-        catalogue: Object,
-    },
+
+    props: { catalogue: Object },
 
     methods: {
         langToImg(lang) {
