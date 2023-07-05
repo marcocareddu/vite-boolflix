@@ -23,8 +23,27 @@ export default {
             // } else {}
             return `${this.imgPath}${lang}.png`
         },
+
+        // Create API Poster link
         cratePosterLink(title) {
             return `${apiImageEndpoint}${this.apiImgSize}${title}`
+        },
+
+        // Change Vote number to Stars
+        numberToStar(number) {
+            const roundedNumber = Math.ceil((number) / 2);
+            let string = '';
+            let fullStars = '';
+            let emptyStars = '';
+            for (let i = 0; i < roundedNumber; i++) {
+                fullStars += '<i class="fa-solid fa-star"></i>';
+            };
+            for (let i = 0; i < (5 - roundedNumber); i++) {
+                emptyStars += '<i class="fa-regular fa-star"></i>';
+            };
+            console.log(emptyStars, fullStars)
+            return fullStars + emptyStars;
+
         }
     }
 }
@@ -41,7 +60,7 @@ export default {
             <h5>{{ movie.original_title }}</h5>
             <h5>{{ movie.original_language }}</h5>
             <img class="flag" :src="this.langToImg(movie.original_language)" :alt="movie.title">
-            <h5>{{ Math.ceil(movie.vote_average) }}</h5>
+            <p v-html="numberToStar(movie.vote_average)"></p>
         </li>
     </ul>
 
@@ -55,7 +74,7 @@ export default {
             <h5>{{ title.original_name }}</h5>
             <h5>{{ title.original_language }}</h5>
             <img class="flag" :src="this.langToImg(title.original_language)" :alt="title.name">
-            <h5>{{ Math.ceil(title.vote_average) }}</h5>
+            <p v-html="numberToStar(title.vote_average)"></p>
         </li>
     </ul>
 
