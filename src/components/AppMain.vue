@@ -2,10 +2,20 @@
 import AppCard from './AppCard.vue'
 
 export default {
+    data() {
+        return {
+            imgPath: './'
+        }
+    },
     props: {
         movies: Object,
     },
-    components: { AppCard }
+    components: { AppCard },
+    methods: {
+        langToImg(lang) {
+            return `${this.imgPath}${lang}.png`
+        },
+    }
 }
 
 </script>
@@ -16,6 +26,7 @@ export default {
             <h4>{{ movie.title }}</h4>
             <h5>{{ movie.original_title }}</h5>
             <h5>{{ movie.original_language }}</h5>
+            <img :src="this.langToImg(movie.original_language)" alt="">
             <h5>{{ Math.ceil(movie.vote_average) }}</h5>
         </li>
     </ul>
@@ -24,4 +35,9 @@ export default {
     <AppCard />
 </template>
 
-<style></style>
+<style scoped>
+img {
+    height: 50px;
+    width: 80px;
+}
+</style>
