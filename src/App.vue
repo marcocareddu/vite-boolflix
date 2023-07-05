@@ -35,5 +35,5 @@ export default {
     <AppHeader @Searched-Title="searchTitle" />
 
     <!--App Main -->
-    <AppMain :movies="this.movies" />
+    <AppMain :movies="this.movies" :series="this.series" />
 </template>
