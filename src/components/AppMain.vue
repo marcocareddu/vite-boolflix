@@ -1,14 +1,15 @@
 <script>
-import ContentCard from '../components/ContentCard.vue'
+import AppCard from './AppCard.vue'
 
 export default {
-    components: { ContentCard, }
+    components: { AppCard }
 }
+
 </script>
 
 <template>
     <!-- Content Card HERE -->
-    <ContentCard />
+    <AppCard />
 </template>
 
 <style></style>
