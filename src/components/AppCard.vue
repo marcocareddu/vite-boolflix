@@ -3,24 +3,26 @@ const apiImageEndpoint = 'https://image.tmdb.org/t/p/';
 
 export default {
     data() {
-        return { imgPath: './', errFlag: false, apiImgSize: 'w342' }
+        return {
+            apiImgSize: 'w342',
+            flagsInside: ['it', 'en'],
+        }
     },
 
     props: { catalogue: Object },
 
     methods: {
+        // Return image Path if present
         langToImg(lang) {
-            // if (this.errFlag) {
-            //     this.errFlag = false
-            //     return `${this.imgPath}pirates.png`
-            // } else {}
-            return `${this.imgPath}${lang}.png`
+            if (this.flagsInside.includes(lang)) {
+                return `./${lang}.png`
+            } else {
+                return '../../public/pirates.png';
+            }
         },
 
         // Create API Poster link
-        cratePosterLink(title) {
-            return `${apiImageEndpoint}${this.apiImgSize}${title}`
-        },
+        cratePosterLink(title) { return `${apiImageEndpoint}${this.apiImgSize}${title}` },
 
         // Change Vote number to Stars
         numberToStar(number) {
@@ -35,7 +37,6 @@ export default {
                 emptyStars += '<i class="fa-regular fa-star"></i>';
             };
             return fullStars + emptyStars;
-
         }
     }
 }
@@ -45,8 +46,8 @@ export default {
     <div v-for="title in catalogue" :key="title.id" class="img-box col col-2 g-3 ">
         <img :src="cratePosterLink(title.poster_path)" :alt="title.title" class="img-fluid rounded-3 poster">
         <div class="info-box">
-            <h5>{{ title.title }}</h5>
-            <h6>({{ title.original_title }})</h6>
+            <h5>{{ title.title || title.name }}</h5>
+            <h6>({{ title.original_title || title.original_name }})</h6>
             <img class="flag" :src="this.langToImg(title.original_language)" :alt="title.title">
             <p v-html="numberToStar(title.vote_average)"></p>
         </div>
