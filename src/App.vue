@@ -70,3 +70,7 @@ export default {
     <!--App Main -->
     <AppMain :movies="this.movies" :series="this.series" />
 </template>
+
+<style lang="scss">
+@use './assets/scss/style.scss'
+</style>
