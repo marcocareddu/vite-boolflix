@@ -22,7 +22,7 @@ export default {
         <section class="series">
             <h1>SERIE TV</h1>
             <div class="row">
-                <SeriesCard class="col col-4" :catalogue="this.series" />
+                <SeriesCard :catalogue="this.series" />
             </div>
         </section>
     </main>
