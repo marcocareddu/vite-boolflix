@@ -1,11 +1,16 @@
 <script>
+import axios from 'axios';
 const apiImageEndpoint = 'https://image.tmdb.org/t/p/';
+const endpoint = 'https://api.themoviedb.org/3';
+const apiKey = '5446901a9478caa2f5783c5e24203b7c';
+const langIta = '&language=it-IT';
 
 export default {
     data() {
         return {
             apiImgSize: 'w342',
             flagsInside: ['it', 'en'],
+            actors: [],
         }
     },
 
@@ -37,7 +42,15 @@ export default {
                 emptyStars += '<i class="fa-regular fa-star"></i>';
             };
             return fullStars + emptyStars;
-        }
+        },
+
+
+        // !!!!! TEST!!!!!! 
+        takeActorsList(prodId) {
+            axios.get(`${endpoint}/movie/${prodId}/credits?api_key=${apiKey}${langIta}`)
+                .then(res => { this.actors = res.data.cast });
+            return this.actors.splice(0, 4)
+        },
     }
 }
 </script>
