@@ -36,6 +36,7 @@ main {
 
 section {
     h1 {
+        color: lightgrey;
         font-weight: 700;
     }
 

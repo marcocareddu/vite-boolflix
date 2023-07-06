@@ -43,11 +43,10 @@ export default {
 
 <template>
     <div v-for="title in catalogue" :key="title.id" class="img-box col col-2 g-3 ">
-        <img :src="cratePosterLink(title.poster_path)" :alt="title.title" class="img-fluid rounded-3">
+        <img :src="cratePosterLink(title.poster_path)" :alt="title.title" class="img-fluid rounded-3 poster">
         <div class="info-box">
             <h5>{{ title.title }}</h5>
             <h6>({{ title.original_title }})</h6>
-            <h6>{{ title.original_language }}</h6>
             <img class="flag" :src="this.langToImg(title.original_language)" :alt="title.title">
             <p v-html="numberToStar(title.vote_average)"></p>
         </div>
@@ -64,9 +63,11 @@ export default {
     position: relative;
     cursor: pointer;
 
+
     &:hover {
-        img {
-            filter: brightness(0.5);
+        .poster {
+            transition: 0.5s;
+            filter: brightness(0.2);
         }
 
         .info-box {
