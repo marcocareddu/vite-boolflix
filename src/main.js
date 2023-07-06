@@ -1,5 +1,7 @@
 import { createApp } from 'vue';
+
+// Import Boostrap
+import 'bootstrap/dist/css/bootstrap.min.css';
 import App from './App.vue';
-import Bootstrap from 'bootstrap/dist/css/bootstrap.min.css';
 
 createApp(App).mount('#app')
