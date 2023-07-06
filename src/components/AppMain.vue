@@ -9,11 +9,35 @@ export default {
 </script>
 
 <template>
-    <!-- Movies Section -->
-    <h1>FILM</h1>
-    <MoviesCard :catalogue="this.movies" />
+    <main class="px-3">
+        <!-- Movies Section -->
+        <section class="movies">
+            <h1>FILM</h1>
+            <div class="row">
+                <MoviesCard :catalogue="this.movies" />
+            </div>
+        </section>
 
-    <!-- Series Section -->
-    <h1>SERIE TV</h1>
-    <SeriesCard :catalogue="this.series" />
+        <!-- Series Section -->
+        <section class="series">
+            <h1>SERIE TV</h1>
+            <div class="row">
+                <SeriesCard class="col col-4" :catalogue="this.series" />
+            </div>
+        </section>
+    </main>
 </template>
+
+<style lang="scss">
+main {
+    height: calc(100vh - 80px);
+    overflow: auto;
+}
+
+section {
+    h1 {
+        font-weight: 700;
+    }
+
+}
+</style>

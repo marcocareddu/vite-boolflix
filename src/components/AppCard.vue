@@ -42,21 +42,49 @@ export default {
 </script>
 
 <template>
-    <ul>
-        <li v-for="title in catalogue" :key="title.id">
-            <img :src="cratePosterLink(title.poster_path)" :alt="title.title">
-            <h4>{{ title.title }}</h4>
-            <h5>{{ title.original_title }}</h5>
-            <h5>{{ title.original_language }}</h5>
+    <div v-for="title in catalogue" :key="title.id" class="img-box col col-2 g-3 ">
+        <img :src="cratePosterLink(title.poster_path)" :alt="title.title" class="img-fluid rounded-3">
+        <div class="info-box">
+            <h5>{{ title.title }}</h5>
+            <h6>({{ title.original_title }})</h6>
+            <h6>{{ title.original_language }}</h6>
             <img class="flag" :src="this.langToImg(title.original_language)" :alt="title.title">
             <p v-html="numberToStar(title.vote_average)"></p>
-        </li>
-    </ul>
+        </div>
+    </div>
 </template>
 
-<style>
+<style lang="scss" scoped>
 .flag {
     height: 50px;
     width: 80px;
+}
+
+.img-box {
+    position: relative;
+    cursor: pointer;
+
+    &:hover {
+        img {
+            filter: brightness(0.5);
+        }
+
+        .info-box {
+            display: block;
+        }
+    }
+}
+
+.info-box {
+    display: none;
+    padding: 20px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    text-align: center;
+    overflow-y: auto;
+    color: white;
 }
 </style>
