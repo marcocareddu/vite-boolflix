@@ -11,7 +11,7 @@ export default {
 <template>
     <!-- Searchbar -->
     <form @submit.prevent="$emit('form-submit', stringToSearch)">
-        <input type="text" :placeholder="placeHolder || 'Cerca...'" v-model="stringToSearch">
+        <input type="text" :placeholder="placeHolder || 'Cerca...'" v-model.trim="stringToSearch">
         <button>Cerca</button>
     </form>
 </template>
