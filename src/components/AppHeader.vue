@@ -12,8 +12,20 @@ export default {
 </script>
 
 <template>
-    <!-- Content Search -->
-    <AppSearch :place-holder="'Cerca film o serie...'" @form-submit="onInput" />
+    <header class="px-3 d-flex justify-content-between align-items-center">
+        <h1>BOOLFLIX</h1>
+        <!-- Content Search -->
+        <AppSearch :place-holder="'Cerca film o serie...'" @form-submit="onInput" />
+    </header>
 </template>
 
-<style></style>
+<style lang="scss" scoped>
+header {
+    height: 80px;
+    background-color: black;
+}
+
+h1 {
+    color: red;
+}
+</style>
