@@ -10,7 +10,7 @@ import AppMain from './components/AppMain.vue';
 import AppHeader from './components/AppHeader.vue';
 
 export default {
-    name: 'Boolflix',
+    name: 'BoolflixApp',
     data() {
         return {
             movies: [],

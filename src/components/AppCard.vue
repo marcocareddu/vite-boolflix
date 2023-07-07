@@ -1,5 +1,6 @@
 <script>
 import axios from 'axios';
+import { faFontAwesome } from '@fortawesome/free-solid-svg-icons';
 const apiImageEndpoint = 'https://image.tmdb.org/t/p/';
 const endpoint = 'https://api.themoviedb.org/3';
 const apiKey = '5446901a9478caa2f5783c5e24203b7c';
@@ -8,50 +9,47 @@ const langIta = '&language=it-IT';
 export default {
     data() {
         return {
-            apiImgSize: 'w342',
-            flagsInside: ['it', 'en'],
+            apiImgSize: "w342",
+            flagsInside: ["it", "en"],
             actors: [],
-        }
+        };
     },
-
     props: { catalogue: Object },
-
     methods: {
         // Return image Path if present
         langToImg(lang) {
             if (this.flagsInside.includes(lang)) {
-                return `./${lang}.png`
-            } else {
-                return '../../public/pirates.png';
+                return `./${lang}.png`;
+            }
+            else {
+                return "../../public/pirates.png";
             }
         },
-
         // Create API Poster link
-        cratePosterLink(title) { return `${apiImageEndpoint}${this.apiImgSize}${title}` },
-
+        cratePosterLink(title) { return `${apiImageEndpoint}${this.apiImgSize}${title}`; },
         // Change Vote number to Stars
         numberToStar(number) {
             const roundedNumber = Math.ceil((number) / 2);
-            let string = '';
-            let fullStars = '';
-            let emptyStars = '';
+            let string = "";
+            let fullStars = "";
+            let emptyStars = "";
             for (let i = 0; i < roundedNumber; i++) {
-                fullStars += '<i class="fa-solid fa-star"></i>';
-            };
+                fullStars += "<i class=\"fa-solid fa-star\"></i>";
+            }
+            ;
             for (let i = 0; i < (5 - roundedNumber); i++) {
-                emptyStars += '<i class="fa-regular fa-star"></i>';
-            };
+                emptyStars += "<i class=\"fa-regular fa-star\"></i>";
+            }
+            ;
             return fullStars + emptyStars;
         },
-
-
         // !!!!! TEST!!!!!! 
         takeActorsList(prodId) {
             axios.get(`${endpoint}/movie/${prodId}/credits?api_key=${apiKey}${langIta}`)
-                .then(res => { this.actors = res.data.cast });
-            return this.actors.splice(0, 4)
+                .then(res => { this.actors = res.data.cast; });
+            return this.actors.splice(0, 4);
         },
-    }
+    },
 }
 </script>
 
