@@ -26,41 +26,34 @@ export default {
             }
         },
         // Create API Poster link
-        cratePosterLink(title) { return `${apiImageEndpoint}${this.apiImgSize}${title}`; },
-        // Change Vote number to Stars
-        numberToStar(number) {
-            const roundedNumber = Math.ceil((number) / 2);
-            let string = "";
-            let fullStars = "";
-            let emptyStars = "";
-            for (let i = 0; i < roundedNumber; i++) {
-                fullStars += "<i class=\"fa-solid fa-star\"></i>";
-            }
-            ;
-            for (let i = 0; i < (5 - roundedNumber); i++) {
-                emptyStars += "<i class=\"fa-regular fa-star\"></i>";
-            }
-            ;
-            return fullStars + emptyStars;
-        },
+        createPosterLink(title) { return `${apiImageEndpoint}${this.apiImgSize}${title}`; },
+
         // !!!!! TEST!!!!!! 
         takeActorsList(prodId) {
             axios.get(`${endpoint}/movie/${prodId}/credits?api_key=${apiKey}${langIta}`)
                 .then(res => { this.actors = res.data.cast; });
             return this.actors.splice(0, 4);
         },
+
+        // Generate icon class by vote
+        iconType(index, number) {
+            const ceiledNum = Math.ceil((number) / 2);
+            return index <= ceiledNum ? 'fas' : 'far';
+        },
     },
 }
 </script>
 
 <template>
-    <div v-for="title in catalogue" :key="title.id" class="img-box col col-2 g-3 ">
-        <img :src="cratePosterLink(title.poster_path)" :alt="title.title" class="img-fluid rounded-3 poster">
+    <div v-for="title in  catalogue" :key="title.id" class="img-box col col-2 g-3 ">
+        <img :src="createPosterLink(title.poster_path)" :alt="title.title" class="img-fluid rounded-3 poster">
         <div class="info-box">
             <h5>{{ title.title || title.name }}</h5>
             <h6>({{ title.original_title || title.original_name }})</h6>
             <img class="flag" :src="this.langToImg(title.original_language)" :alt="title.title">
-            <p v-html="numberToStar(title.vote_average)"></p>
+            <p>
+                <FontAwesomeIcon v-for="n in 5" :key="title.name" :icon="[iconType(n, title.vote_average), 'star']" />
+            </p>
         </div>
     </div>
 </template>
