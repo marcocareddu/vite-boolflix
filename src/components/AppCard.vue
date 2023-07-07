@@ -11,6 +11,7 @@ export default {
         return {
             apiImgSize: "w342",
             flagsInside: ["it", "en"],
+            actors: [],
         };
     },
     props: { catalogue: Object },
@@ -30,20 +31,18 @@ export default {
             return index <= ceiledNum ? 'fas' : 'far';
         },
 
-        // // !!!!! TEST!!!!!! 
-        // takeActorsList(prodId) {
-        //     const actors = [];
-        //     axios.get(`${endpoint}/movie/${prodId}/credits?api_key=${apiKey}${langIta}`)
-        //         .then(res => { actors = res.data.cast; });
-        //     console.log(actors)
-        //     return actors;
-        // },
+        // !!!!! TEST!!!!!! 
+        getActorsList(prodId) {
+            axios.get(`${endpoint}/movie/${prodId}/credits?api_key=${apiKey}${langIta}`)
+                .then(res => { this.actors = res.data.cast.splice(0, 4); });
+            return this.actors
+        },
     },
 }
 </script>
 
 <template>
-    <div v-for="title in    catalogue  " :key="title.id" class="img-box col col-2 g-3 ">
+    <div v-for="title in catalogue" :key="title.id" class="img-box col col-2 g-3 ">
         <img :src="createPosterLink(title.poster_path)" :alt="title.title" class="img-fluid rounded-3 poster">
         <div class="info-box">
             <h5>{{ title.title || title.name }}</h5>
@@ -52,7 +51,7 @@ export default {
             <p class="py-2">
                 <FontAwesomeIcon v-for="n in 5" :key="title.name" :icon="[iconType(n, title.vote_average), 'star']" />
             </p>
-            <!-- <p v-for="actor in takeActorsList(title.id)" :key="actor.name">{{ actor.name }}</p> -->
+            <p v-for="actor in this.actors" :key="actor.id">{{ actor.name }}</p>
         </div>
     </div>
 </template>
