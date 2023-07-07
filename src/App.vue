@@ -17,7 +17,7 @@ export default {
             series: [],
         }
     },
-    components: { AppMain, AppHeader, },
+    components: { AppMain, AppHeader },
     methods: {
 
         // Search movie title with API
